@@ -1,0 +1,250 @@
+\documentclass{article}
+\input{theorem}
+\input{prooftree}
+\usepackage{stmaryrd}
+\usepackage{diagrams}
+\def\erule#1#2{\begin{prooftree}#1\justifies #2\end{prooftree}}
+
+\def\cn{{:}}
+\def\rtype{\mathrm{type}}
+\def\rid{\mathrm{id}}
+\def\rctx{\,\mathrm{ctx}}
+\def\rbctx{\,\mathrm{bctx}}
+\def\rbundle{\,\mathrm{bundle}}
+\def\mm{\mathsf{m}}
+\def\nn{\mathsf{n}}
+\def\without{\setminus}
+\def\prov{\vdash}
+\def\celse{\mathrel |}
+
+\begin{document}
+
+\[
+\begin{tabular}{r@{$\quad$}c@{$\quad::=\quad$ }l}
+  Morphisms&$\mm$&$\cdots$\\
+  Bundles&$\alpha$&$\cdot \celse \alpha, x := \mm $\\
+  Bundle Contexts&$\Xi$&$\cdot \celse \Xi, x^\alpha $\\
+  Contexts&$\Gamma$&$\cdot \celse \Gamma, x : A^\alpha $\\
+  Types&$A$&$ F^\alpha_\mm A \celse U_\mm A \celse \cdots $\\
+  Terms&$M, N$&$ F^\alpha_\mm M \celse U_\mm M \celse \cdots $\\
+\end{tabular}
+\]
+
+\subsubsection{Bundle Contexts}
+\fbox{$\prov \Xi \rbctx$}
+$$
+\erule
+{}
+{\prov \cdot \rbctx  }
+\qquad
+\erule
+{\prov \Xi \rbctx \qquad \Xi \prov \alpha \rbundle}
+{\prov \Xi, x : \alpha \rbctx  }
+$$
+\subsubsection{Bundles}
+\fbox{$\Xi \prov \alpha \rbundle$}
+$$
+\erule{\using bnil }{\Xi \prov \cdot \rbundle}\qquad
+\erule
+{\Xi \prov \beta  \rbundle \qquad  \alpha \mm \ge \beta \using bcons}
+{ \Xi , x^\alpha \prov (\beta ,  x := \mm) \rbundle }
+$$
+$$
+\erule
+{\Xi \prov \beta  \rbundle \using bcons_0}
+{ \Xi , x^\alpha \prov \beta  \rbundle }
+$$
+
+\subsubsection{Erasure}
+\fbox{$\Gamma^\ominus \in \Xi$}
+$$(x_1:A_1^{\alpha_1}, \ldots, x_n:A_n^{\alpha_n})^\ominus = (x_1:\alpha_1, \ldots, x_n:\alpha_n) $$
+
+\subsubsection{Contexts}
+\fbox{$\prov \Gamma \rctx$}
+$$
+\erule
+{\prov \Gamma \rctx\qquad \Gamma \prov A^\alpha : \rtype \qquad \Gamma^\ominus \prov \alpha \rbundle \using {\rctx,}}
+{\prov \Gamma, x : A^\alpha \rctx }
+$$
+
+\subsubsection{Types}
+\fbox{$\Gamma\prov A^\alpha : \rtype$}
+$$
+\erule
+{\alpha' \ge  \alpha \mm \qquad \Gamma \prov A^{\alpha} : \rtype\using F}
+{\Gamma \prov (F^{\alpha}_\mm A)^{\alpha'} : \rtype}
+\qquad
+\erule
+{\Gamma \prov A^{\alpha \mm} : \rtype\using U}
+{\Gamma \prov (U_\mm A)^{\alpha} : \rtype}
+$$
+
+\subsubsection{Terms}
+\fbox{$\Gamma\prov N^\nu : A^\alpha$}
+
+$$
+\erule
+{x : A^\alpha \in \Gamma \qquad \xi(x) \ge 1 \qquad \alpha' \ge \alpha \using{\rid}}
+{\Gamma \prov x^\xi : A^{\alpha'}}
+$$
+
+$$
+\erule
+{
+\nu' \ge \nu \mm
+\qquad  \Gamma \prov N^{ \nu} : A^{\alpha} \using FR}
+{\Gamma \prov (F^{ \nu}_\mm N)^{\nu'} :  (F^{\alpha}_\mm A)^{\alpha'} }
+$$
+
+$$
+\erule
+{\Gamma \prov M^{\nu \mm} : A^{\alpha \mm} \using UR}
+{\Gamma \prov (U_\mm N)^\nu : (U_\mm A)^\alpha}
+$$
+
+$$
+\erule
+{\Gamma, y: A^{\alpha}  \prov   N^{ [y \mm / x]\nu} : [F_\mm^{y := 1} y/x]C^{[y \mm / x]\gamma} \using FL}
+{\Gamma, x:(F^\alpha_\mm A)^{\alpha'} \prov  (\blet F_\mm y = x \bin N)^\nu : C^\gamma}
+$$
+
+
+$$
+\erule
+{\Gamma \prov N^\nu : (U_\mm A)^\alpha \qquad \nu' \ge \nu \mm \qquad \alpha' \ge \alpha \mm \using U\mathcal E}
+{\Gamma \prov (\tilde U_\mm N)^{\nu'} : A^{\alpha'}}
+$$
+
+
+
+\subsubsection{Bundle Inequality}
+\fbox{$\alpha \ge \beta$}
+% \fbox{$\alpha \ge_x \beta$}
+$$
+\erule
+{}
+{\cdot \ge \cdot}
+\qquad
+\erule
+{\alpha \ge \beta}
+{(\alpha, x := \mm) \ge \beta}
+\qquad
+\erule
+{\alpha \ge \beta \qquad \mm \ge \nn}
+{(\alpha, x := \mm) \ge (\beta, x := \nn)}
+$$
+%% $$
+%% \erule
+%% {\alpha \ge \beta \qquad \alpha \ge \alpha(x) \beta}
+%% {\alpha \ge_x \beta}
+%% $$
+
+\subsubsection{Substitution}
+\fbox{$\sigma(M^\mu)$} \fbox{$\sigma M$}
+\fbox{$\sigma(C^\gamma)$} \fbox{$\sigma C$}
+\fbox{$\sigma\Gamma$}
+\fbox{$\alpha\without x$}
+\fbox{$\Xi \without x$}
+\fbox{$[y \mm / x] \gamma$}
+
+
+
+
+
+$$\cdot\without x = \cdot$$
+$$(\alpha, x := \mm)\without x = \alpha$$
+$$(\alpha, y := \nn)\without x = (\alpha\without x, y := \nn) $$
+$$(\Xi, y^\alpha)\without x = (\Xi \without x), y^{\alpha \without x}$$
+$$[N^\nu / x](M^\mu) = ([N^\nu / x]M)^{\mu \without x}$$
+$$[N^\nu / x](C^\gamma) = ([N^\nu / x]C)^{\gamma \without x}$$
+
+$$
+\erule
+{\Xi, x^\alpha, \Xi' \prov \mu \rbundle}
+{\Xi, (\Xi'\without x) \prov \mu\without x \rbundle}
+$$
+$$
+\erule
+{\Gamma \prov N^\nu : A^\alpha\qquad \Gamma, x:A^\alpha, \Gamma' \prov M^{\mu} : C^\gamma \qquad \mu \ge \nu \mu(x) \qquad \gamma \ge \nu \gamma(x) \using sub}
+{\Gamma, [N^\nu / x]\Gamma' \prov [N^\nu / x] (M^\mu) : [N^\nu / x](C^\gamma)}
+$$
+
+$$[y \mm / x]\gamma = (\gamma \without x), y := \mm \gamma(x)$$
+
+
+\begin{lemma}
+$(\alpha \without x)\mm = \alpha \mm \without x$
+\end{lemma}
+
+\begin{lemma}
+$$
+\erule
+{\alpha \ge \beta}
+{\alpha \without x \ge \beta \without x}
+$$
+\end{lemma}
+
+\begin{lemma}[Bundle Subtraction]
+$$
+\erule
+{\Xi, x^\alpha, \Xi' \prov \mu \rbundle}
+{\Xi, (\Xi'\without x) \prov \mu\without x \rbundle}
+$$
+\end{lemma}
+
+\begin{proof}
+By induction on the structure of the input derivation.
+\begin{enumerate}
+\item[Case:]
+$$
+\erule{\using bnil }{\Xi, x^\alpha, \Xi' \prov \cdot \rbundle}
+$$
+Immediate.
+\item[Case:]
+$$
+\erule
+{\Xi \prov \mu_0  \rbundle \qquad  \alpha \mm \ge \mu_0 \using bcons}
+{ \Xi , x^\alpha \prov (\mu_0 ,  x := \mm) \rbundle }
+$$
+Here $\Xi' = \cdot$. Immediate from subderivation $\Xi \prov \mu_0  \rbundle$.
+\item[Case:]
+$$
+\erule
+{\Xi \prov \mu_0  \rbundle \using bcons_0}
+{ \Xi , x^\alpha \prov \mu_0  \rbundle }
+$$
+Here $\Xi' = \cdot$. Immediate from subderivation $\Xi \prov \mu_0  \rbundle$, and noticing that $x$ doesn't appear in $\mu_0$, hence $\mu_0 \without x = \mu_0$.
+\item[Case:]
+$$
+\erule
+{\Xi, x^\alpha, \Xi'_0  \prov \mu_0  \rbundle \qquad  \upsilon \mm \ge \mu_0 \using bcons}
+{ \Xi, x^\alpha, \Xi'_0 , y^\upsilon \prov (\mu_0 ,  y := \mm) \rbundle }
+$$
+Construct a derivation
+$$
+\erule
+{\Xi,  (\Xi'_0 \without x) \prov \mu_0 \without x \rbundle \qquad (\upsilon \without x)\mm \ge \mu_0 \without x}
+{\Xi,  (\Xi'_0 \without x) , y^{\upsilon \without x} \prov ((\mu_0 \without x),  y := \mm) \rbundle}
+$$
+using the induction hypothesis for the left premise, and previous lemmas to obtain the right premise.
+
+\item[Case:]
+$$
+\erule
+{\Xi, x^\alpha, \Xi'_0  \prov \mu_0  \rbundle \using bcons_0}
+{ \Xi, x^\alpha, \Xi'_0 , y^\upsilon \prov \mu_0  \rbundle }
+$$
+Construct a derivation
+$$
+\erule
+{\Xi, (\Xi'_0 \without x)  \prov \mu_0 \without x \rbundle \using bcons_0}
+{ \Xi,  (\Xi'_0 \without x) , y^{\upsilon \without x} \prov \mu_0\without x  \rbundle }
+$$
+out of the derivation obtained from using the induction hypothesis.
+\end{enumerate}
+
+\cqed
+\end{proof}
+
+
+\end{document}
