@@ -1,0 +1,86 @@
+\begin{thebibliography}{BCSW83}
+
+\bibitem[AL17]{al:displayed}
+Benedikt Ahrens and Peter~LeFanu Lumsdaine.
+\newblock Displayed categories.
+\newblock arXiv:1705.04296, 2017.
+
+\bibitem[BCSW83]{bcsw:variation-enr}
+Renato Betti, Aurelio Carboni, Ross Street, and Robert Walters.
+\newblock Variation through enrichment.
+\newblock {\em J. Pure Appl. Algebra}, 29(2):109--127, 1983.
+
+\bibitem[BD98]{bd:hda3}
+John~C. Baez and James Dolan.
+\newblock Higher-dimensional algebra. {III}. {$n$}-categories and the algebra
+  of opetopes.
+\newblock {\em Adv. Math.}, 135(2):145--206, 1998.
+
+\bibitem[B{\'e}n00]{benabou:dist-at-work}
+Jean B{\'e}nabou.
+\newblock Distributors at work.
+\newblock Notes by Thomas Streicher from lectures given at TU Darmstadt,
+  \url{http://www.mathematik.tu-darmstadt.de/~streicher/FIBR/DiWo.pdf}, 2000.
+
+\bibitem[Buc14]{buckley:2fib}
+Mitchell Buckley.
+\newblock Fibred 2-categories and bicategories.
+\newblock {\em Journal of Pure and Applied Algebra}, 218(6):1034 -- 1074, 2014.
+\newblock arXiv:1212.6283.
+
+\bibitem[CS10]{cs:multicats}
+G.S.H. Cruttwell and Michael Shulman.
+\newblock A unified framework for generalized multicategories.
+\newblock {\em Theory Appl. Categ.}, 24:580--655, 2010.
+\newblock arXiv:0907.2460.
+
+\bibitem[Day70]{day:closed}
+Brian Day.
+\newblock On closed categories of functors.
+\newblock In {\em Reports of the Midwest Category Seminar, IV}, Lecture Notes
+  in Mathematics, Vol. 137, pages 1--38. Springer, Berlin, 1970.
+
+\bibitem[Her99]{hermida:2fib}
+Claudio Hermida.
+\newblock Some properties of {${\bf Fib}$} as a fibred {$2$}-category.
+\newblock {\em J. Pure Appl. Algebra}, 134(1):83--109, 1999.
+
+\bibitem[Joh93]{ptj:fib-pprod}
+Peter~T. Johnstone.
+\newblock Fibrations and partial products in a {$2$}-category.
+\newblock {\em Appl. Categ. Structures}, 1(2):141--179, 1993.
+
+\bibitem[LS16]{ls:1var-adjoint-logic}
+Daniel Licata and Michael Shulman.
+\newblock Adjoint logic with a 2-category of modes.
+\newblock LFCS '16. Available at
+  \url{http://dlicata.web.wesleyan.edu/pubs/ls15adjoint/ls15adjoint.pdf}, 2016.
+
+\bibitem[LSR17]{lsr:multi}
+Daniel~R. Licata, Michael Shulman, and Mitchell Riley.
+\newblock A fibrational framework for substructural and modal logics.
+\newblock Submitted, 2017.
+
+\bibitem[Str80]{street:fibi}
+Ross Street.
+\newblock Fibrations in bicategories.
+\newblock {\em Cahiers Topologie G\'eom. Diff\'erentielle}, 21(2):111--160,
+  1980.
+
+\bibitem[Str81]{street:conspectus}
+Ross Street.
+\newblock Conspectus of variable categories.
+\newblock {\em J. Pure Appl. Algebra}, 21(3):307--338, 1981.
+
+\bibitem[Str01]{street:powerful}
+Ross Street.
+\newblock Powerful functors.
+\newblock \url{http://maths.mq.edu.au/~street/Pow.fun.pdf}, September 2001.
+
+\bibitem[Woo82]{wood:proarrows-i}
+R.~J. Wood.
+\newblock Abstract proarrows. {I}.
+\newblock {\em Cahiers Topologie G\'eom. Diff\'erentielle}, 23(3):279--290,
+  1982.
+
+\end{thebibliography}
